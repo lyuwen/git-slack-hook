@@ -53,11 +53,12 @@ fi
 #${ECHO} "git config hooks.slack.webhook-url \"$WHURL\""
 git config hooks.slack.webhook-url "$WHURL"
 ${ECHO} "done"
-read -p "Please specicy a channel [#general]: " channel
-if [[ -z $channel ]]; then
-    channel="#general"
+read -p "Please specicy a channel (optional): " channel
+if [[ ! -z $channel ]]; then
+    git config hooks.slack.channel "$channel"
+else
+    ${ECHO} "channel not specified. It will be sent to the channel set on the website."
 fi
-git config hooks.slack.channel "$channel"
 read -p "Please specicy a bot username [git]: " botname
 if [[ -z $botname ]]; then
     botname="git"
