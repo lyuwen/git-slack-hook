@@ -63,7 +63,7 @@ else
     read -p "Save the URL as an env var(Y/n)? " choice
     case "$choice" in 
         n|N ) ${ECHO} "Skipping"; exit 1;;
-        * ) ${ECHO} "${ECHO} \"export SLACK_WEBHOOK_URL=\"\$\{WHURL\}\"\"";${ECHO} "export SLACK_WEBHOOK_URL=\"${WHURL}\"" >> $BASHRC; exit 1;;
+        * ) ${ECHO} "${ECHO} \"export SLACK_WEBHOOK_URL=\"\$\{WHURL\}\"\"";${ECHO} "export SLACK_WEBHOOK_URL=\"${WHURL}\"" >> $BASHRC;;
     esac
 fi
 #${ECHO} "git config hooks.slack.webhook-url \"$WHURL\""
