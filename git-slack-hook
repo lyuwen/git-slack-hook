@@ -14,6 +14,14 @@
 # - The Slack webhook URL can be found in:
 #   https://my.slack.com/services/new/incoming-webhook
 #
+CURL=`which curl`
+if [[ -z $CURL ]]; then
+    CURL=`find ~ -name curl -perm /u+x -type f | head -n 1`
+    if [[ -z $CURL ]]; then
+        exit 1
+    fi
+fi
+
 function help() {
   echo "Required config settings:"
   echo " git config hooks.slack.webhook-url 'https://hooks.slack.com/services/...'"
@@ -300,7 +308,7 @@ function notify() {
     return
   fi
 
-  curl -s \
+  $CURL -s \
       -d "payload=$payload" \
       "$webhook_url" \
       >/dev/null
@@ -308,6 +316,7 @@ function notify() {
 }
 
 # MAIN PROGRAM
+echo -e "Posting message..."
 # Read all refs from stdin, notify slack for each
 while read line; do
   set -- $line
