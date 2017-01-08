@@ -1,6 +1,6 @@
 # Git post-receive hook for Slack
 
-Credit to @chriseldredge
+Credit to [@chriseldredge](https://github.com/chriseldredge/git-slack-hook)
 
 This is a bash script that posts a message into your [Slack](https://slack.com) channel when changes are pushed.
 
